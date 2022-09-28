@@ -19,7 +19,7 @@ class Mehsullar extends StatelessWidget {
         surfaceTintColor: Colors.black,
         elevation: 20,
         child: Container(
-          width: 77,
+          width: 73,
           height: 82,
           decoration: const BoxDecoration(
             color: Color.fromARGB(36, 255, 255, 255),

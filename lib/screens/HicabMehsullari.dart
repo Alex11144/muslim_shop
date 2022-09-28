@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_from_amirali/screens/hicabs.dart';
 import 'package:project_from_amirali/useful_classes/hicab_data.dart';
@@ -6,6 +7,9 @@ class HicabsName extends StatelessWidget {
   String header = 'Hicablar';
 
   HicabsName({Key? key}) : super(key: key);
+  // final CupertinoTabController controller;
+  // final GlobalKey<NavigatorState> navigatorKey;
+  // HicabsName( this.controller,  this.navigatorKey);
 
   @override
   Widget build(BuildContext context) {

@@ -64,7 +64,8 @@ class _SearchWidgetForHicabsState extends State<SearchWidgetForHicabs> {
                       padding: const EdgeInsets.fromLTRB(0, 9, 0, 0),
                       child: Column(children: [
                         SizedBox(
-                          height: 43,
+                        height: 37,
+                        
                           width: double.maxFinite,
                           child: const TabBar(
                               // isScrollable: true,

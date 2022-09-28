@@ -159,7 +159,7 @@ class ProfileAndId extends StatelessWidget {
                           shrinkWrap: true,
                           itemCount: 3,
                           itemBuilder: ((context, index) {
-                            final routes = [HicabsName(), HicabsName(), Etir()];
+                            final routes = [Etir(), Etir(), Etir()];
                             final routesText = [
                               'Sexsi hesab uzre emeliyyatlar',
                               'Elanlarima olan odenisler',

@@ -5,7 +5,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:project_from_amirali/favourites/search_for_favorites.dart';
 
 import 'package:project_from_amirali/screens/Cup_bottom_tab.dart';
-
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:project_from_amirali/screens/dini_kitablar/kitab_names_layout/kitab_names_layout.dart';
 import 'package:project_from_amirali/useful_classes/hicab_data.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,7 @@ Future main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => Change()),
+      ChangeNotifierProvider(create: (_) => ListViewState()),
     ],
     child: const BottomNavigationBarWidget(),
   )
@@ -47,13 +49,12 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     super.dispose();
     Boxes.getTransactions().close();
     SepetBoxes.getTransactions().close();
-
     LoginBox.getTransactions().close();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
         // routes: {
         //   '/main_screen': (context) => CupertinoTabWidget(),
         //   '/register': (context) => RegistrationWidget(),
@@ -61,19 +62,14 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         //   '/hesab_screen': (context) => HesabWidget(),
         // },
         // initialRoute: '/register',
-        home: CupertinoTabWidget()
-        // AnimatedSplashScreen(
-        //     splash: 'assets/images/betulimage.png',
-        //     // splashIconSize: 30000,
-        //     animationDuration: Duration(milliseconds: 2000),
-        //     duration: 3500,
-        //     splashTransition: SplashTransition.scaleTransition,
-        //     nextScreen: CupertinoTabWidget())
-
-        );
+        home:
+            // CupertinoTabWidget()
+            AnimatedSplashScreen(
+                splash: 'assets/images/betulimage.png',
+                // splashIconSize: 30000,
+                animationDuration: Duration(milliseconds: 1700),
+                duration: 2500,
+                splashTransition: SplashTransition.scaleTransition,
+                nextScreen: CupertinoTabWidget()));
   }
-
-//   void tapped(int index) {
-//     Navigator.canPop(context);
-//   }
 }

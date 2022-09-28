@@ -9,7 +9,6 @@ import 'dart:async';
 class Shop extends StatefulWidget {
   const Shop({Key? key}) : super(key: key);
 
-
   @override
   State<Shop> createState() => _ShopState();
 }
@@ -19,30 +18,30 @@ class _ShopState extends State<Shop> {
   static DateTime now = DateTime.now();
   String formatter = DateFormat('hh:mm').format(now);
   late String _timeString;
-  // void initState() {
-  //   _timeString = _formatDateTime(DateTime.now());
-  //   _timer =
-  //       Timer.periodic(const Duration(seconds: 1), (Timer t) => _getTime());
-  //   super.initState();
-  // }
+  void initState() {
+    _timeString = _formatDateTime(DateTime.now());
+    _timer =
+        Timer.periodic(const Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }
 
-  // void _getTime() {
-  //   final DateTime now = DateTime.now();
-  //   final String formattedDateTime = _formatDateTime(now);
-  //   setState(() {
-  //     _timeString = formattedDateTime;
-  //   });
-  // }
+  void _getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedDateTime = _formatDateTime(now);
+    setState(() {
+      _timeString = formattedDateTime;
+    });
+  }
 
-  // String _formatDateTime(DateTime dateTime) {
-  //   return DateFormat('hh:mm:ss').format(dateTime);
-  // }
+  String _formatDateTime(DateTime dateTime) {
+    return DateFormat('hh:mm:ss').format(dateTime);
+  }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   _timer.cancel();
-  // }
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+  }
 
   Color color = const Color.fromARGB(81, 255, 255, 255);
   Color textColor = Colors.white;
@@ -76,7 +75,7 @@ class _ShopState extends State<Shop> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     color: const Color(0xFFE31E24)),
-                width: 380,
+                width: MediaQuery.of(context).size.width,
                 height: 180,
                 child: Stack(
                   fit: StackFit.expand,
@@ -118,8 +117,8 @@ class _ShopState extends State<Shop> {
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  const TextSpan(
-                                    text: '5:32:03',
+                                  TextSpan(
+                                    text: '$_timeString',
                                     style: TextStyle(
                                         fontSize: 11,
                                         color: Colors.white,
@@ -196,7 +195,7 @@ class _ShopState extends State<Shop> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: Column(
-                children: const [
+                children: [
                   ProductsRow(),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 10, 0, 15),
