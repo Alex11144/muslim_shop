@@ -1,14 +1,21 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:project_from_amirali/screens/dini_kitablar/kitab_class/ayeler_class_api.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/kitab_class/kitab_class_api.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/kitablar_api/ayeler_api.dart';
+import 'package:project_from_amirali/screens/dini_kitablar/listening/listening_after_tap/screen_listening.dart';
+import 'package:provider/provider.dart';
 
-class ListenToTheBook extends StatelessWidget {
+class ListenToTheBook extends StatefulWidget {
   final Kitablar product1;
 
-  const ListenToTheBook({Key? key, required this.product1}) : super(key: key);
+  ListenToTheBook({Key? key, required this.product1}) : super(key: key);
 
+  @override
+  State<ListenToTheBook> createState() => _ListenToTheBookState();
+}
+
+class _ListenToTheBookState extends State<ListenToTheBook> {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as Kitablar;
@@ -33,7 +40,7 @@ class ListenToTheBook extends StatelessWidget {
                     alignment: AlignmentDirectional.centerEnd,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 90, 0, 0),
                         child: SvgPicture.asset(
                           'assets/images/Vector.svg',
                           fit: BoxFit.fitHeight,
@@ -93,21 +100,21 @@ class ListenToTheBook extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 15.0),
-                            child: Text(args.arabicString,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400)),
+                            child:
+                                SvgPicture.asset('assets/images/onKitab.svg'),
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.only(top: 20.0, bottom: 4),
+                                const EdgeInsets.only(top: 10.0, bottom: 4),
                             child: CircleAvatar(
                                 backgroundColor: Colors.white,
                                 foregroundColor: Colors.red,
                                 child: IconButton(
                                     onPressed: () {
-                                      // Navigator.of(context).pushNamed('hicabs');
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SliderAndPlayer()));
                                     },
                                     icon: const Icon(Icons.play_arrow))),
                           ),
