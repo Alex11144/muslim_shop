@@ -13,29 +13,63 @@ class ListViewState extends ChangeNotifier {
   bool listBool3 = false;
   bool get listBool3a => listBool3;
   late var product1;
-  // void searchProduct(String query,int index) {
-  //      final suggestions = product1.where((product) {
-  //     final productTitle = product.name.toLowerCase();
-  //     final input = query.toLowerCase();
+  bool _hide = false;
+  bool get hide => _hide;
+ void condition() {
+    if (listBool1 == true) {
+      filteredMovies = kitablar1;
+    } else if (listBool2 == true) {
+      filteredMovies = kitablar2;
+    } else if (listBool3 == true) {
+      filteredMovies = kitablar3;
+    }
+    notifyListeners();
+  }
 
-  //     return productTitle.contains(input);
-  //   }).toList();
-  //   if (listBool1 == true) {
-  //     product1 = kitablar1[index];
-  //           product1 = suggestions;
+  ScrollController controller = ScrollController();
+  TextEditingController searchController = TextEditingController(text: '');
+  var filteredMovies = <Kitablar>[];
+  var filteredMovies2 = [...kitablar1];
 
-  //   } else if (listBool2 == true) {
-  //     product1 = kitablar2[index];
-  //           product1 = suggestions;
+  void listening(int index, context) {
+    var details = filteredMovies[index];
 
-  //   }
-  //   else if (listBool3 == true) {
-  //     product1 = kitablar3[index];
-  //           product1 = suggestions;
+    Navigator.of(context)
+        .pushNamed('/main_screen/listen_to_the_book', arguments: details);
+  }
 
-  //   }
+  void _searchMovies() {
+    final query = searchController.text;
 
-  // }
+    if (query.isNotEmpty) {
+      filteredMovies = filteredMovies2.where((Kitablar kitab) {
+        return kitab.name.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    } else {
+      filteredMovies = filteredMovies2;
+    }
+    notifyListeners();
+  }
+
+  void hider() {
+    if (_hide == true) {
+      _hide = false;
+    } else {
+      _hide = true;
+    }
+    notifyListeners();
+  }
+
+  ListViewState() {
+    controller.addListener(() {
+      _hide = false;
+      searchController.text = '';
+      notifyListeners();
+    });
+    filteredMovies = filteredMovies2;
+    searchController.addListener(_searchMovies);
+    notifyListeners();
+  }
 }
 
 class RowLayout extends StatelessWidget {

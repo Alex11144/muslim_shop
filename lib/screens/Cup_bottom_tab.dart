@@ -9,6 +9,7 @@ import 'package:project_from_amirali/screens/Etirler.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/dini_kitablar_ui.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/kitab_class/kitab_class_api.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/listening/listening.dart';
+import 'package:project_from_amirali/screens/dini_kitablar/listening/listening_after_tap/screen_listening.dart';
 import 'package:project_from_amirali/screens/main_screen.dart';
 import 'package:project_from_amirali/screens/search_screen.dart';
 import 'package:project_from_amirali/useful_classes/hicab_data.dart';
@@ -108,7 +109,6 @@ class _CupertinoTabWidgetState extends State<CupertinoTabWidget> {
                       return Container();
                     }
                   },
-                  // 'details': (context) => DetailsScreenForHicabs(),
                 },
               );
             case 1:
@@ -139,7 +139,7 @@ class _CupertinoTabWidgetState extends State<CupertinoTabWidget> {
                     } else {
                       return Container();
                     }
-                  },
+                  },  
                 },
               );
             case 2:
