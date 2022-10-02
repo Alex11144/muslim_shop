@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import
+
 import 'package:flutter/material.dart';
 
 import 'package:project_from_amirali/sepet/sepetim.dart';
@@ -60,14 +62,12 @@ class _SearchWidgetForHicabsState extends State<SearchWidgetForHicabs> {
 
                   return DefaultTabController(
                     length: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 9, 0, 0),
+                    child: SafeArea(
                       child: Column(children: [
-                        SizedBox(
-                        height: 37,
-                        
+                        const SizedBox(
+                          height: 29,
                           width: double.maxFinite,
-                          child: const TabBar(
+                          child: TabBar(
                               // isScrollable: true,
                               labelColor: Color(0xFFE31E24),
                               unselectedLabelColor: Colors.grey,
@@ -97,7 +97,7 @@ class _SearchWidgetForHicabsState extends State<SearchWidgetForHicabs> {
                           ),
                         ),
                         SizedBox(
-                          height: 620,
+                          height: 591,
                           width: double.maxFinite,
                           child: TabBarView(children: [
                             watcher.transactions.isNotEmpty
@@ -106,6 +106,8 @@ class _SearchWidgetForHicabsState extends State<SearchWidgetForHicabs> {
                                     behavior: ScrollConfiguration.of(context)
                                         .copyWith(scrollbars: false),
                                     child: ListView.separated(
+                                        padding: const EdgeInsets.all(0),
+                                        physics: const BouncingScrollPhysics(),
                                         // shrinkWrap: true,
                                         itemCount: watcher.transactions.length,
                                         separatorBuilder: ((context, index) =>
@@ -235,8 +237,9 @@ class _SearchWidgetForHicabsState extends State<SearchWidgetForHicabs> {
                                                           ),
                                                           TextButton(
                                                               style: TextButton.styleFrom(
-                                                                  primary: Colors
-                                                                      .white,
+                                                                  foregroundColor:
+                                                                      Colors
+                                                                          .white,
                                                                   backgroundColor:
                                                                       const Color(
                                                                           0xFFE31E24)),
@@ -297,7 +300,7 @@ class _SearchWidgetForHicabsState extends State<SearchWidgetForHicabs> {
                                   ))
                                 : const Center(
                                     child: Text('Favoriler secilmeyib')),
-                            Center(child: SepetWidget()),
+                            const Center(child: SepetWidget()),
                           ]),
                         )
                       ]),

@@ -1,7 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/kitab_class/kitab_class_api.dart';
-import 'package:project_from_amirali/screens/dini_kitablar/kitablar_api/ayeler_api.dart';
 
 class SliderAndPlayer extends StatefulWidget {
   final Kitablar product1;
@@ -18,15 +17,18 @@ class _SliderAndPlayerState extends State<SliderAndPlayer> {
   Duration position = Duration.zero;
   final player = AudioCache();
   final audioPlayer = AudioPlayer();
-
-  void setAudio()  {
+  Future setAudio() async {
     audioPlayer.setReleaseMode(ReleaseMode.loop);
-    // String url = 'assets/audio/ochen-krasivyy-azan-mishari-rashid-azan.mp3';
+    const url = 'ochen-krasivyy-azan-mishari-rashid-azan.mp3';
     // await audioPlayer.play(UrlSource(url));
+    // await audioPlayer.play(UrlSource(url));
+    // audioPlayer.setSource(UrlSource(url));
+    await audioPlayer.play(AssetSource(url));
   }
 
   @override
   void initState() {
+    super.initState();
     setAudio();
     audioPlayer.onPlayerStateChanged.listen((state) {
       if (mounted) {
@@ -50,10 +52,10 @@ class _SliderAndPlayerState extends State<SliderAndPlayer> {
         });
       }
     });
-    super.initState();
   }
 
   String formatTime(Duration duration) {
+    // ignore: non_constant_identifier_names
     String TwoDigits(int n) => n.toString().padLeft(2, '0');
     final hours = TwoDigits(duration.inHours);
     final minutes = TwoDigits(duration.inMinutes.remainder(60));
@@ -99,16 +101,16 @@ class _SliderAndPlayerState extends State<SliderAndPlayer> {
                     ),
                     Text(
                       details.description,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 20),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       details.name,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 30),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 30),
                     ),
                   ],
                 ),
@@ -142,8 +144,8 @@ class _SliderAndPlayerState extends State<SliderAndPlayer> {
                           if (isPlaying) {
                             await audioPlayer.pause();
                           } else {
-                            await audioPlayer.play(UrlSource(
-                                'assets/audio/ochen-krasivyy-azan-mishari-rashid-azan.mp3'));
+                            // await audioPlayer.resume();
+                            await audioPlayer.resume();
                           }
                         },
                         icon: Icon(

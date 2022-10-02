@@ -36,86 +36,89 @@ class _KitablarUIState extends State<KitablarUI> {
     final listViewState = context.watch<ListViewState>();
 
     return Center(
-      child: Container(
+      child: SizedBox(
         height: 840,
         width: 390,
         child: Scaffold(
           body: Padding(
-            padding: const EdgeInsets.only(top: 8.0, left: 10, right: 10),
-            child: Column(
-              children: [
-                listViewState.hide == false
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.white,
-                            foregroundColor: Colors.black,
-                            child: IconButton(
-                                onPressed: () {
-                                  Navigator.popUntil(
-                                      context, (route) => route.isFirst);
-                                },
-                                icon: const Icon(Icons.arrow_back)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 40.0),
-                            child: const Text(
-                              'Quran',
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18),
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: SafeArea(
+              child: Column(
+                children: [
+                  listViewState.hide == false
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              child: IconButton(
+                                  onPressed: () {
+                                    Navigator.popUntil(
+                                        context, (route) => route.isFirst);
+                                  },
+                                  icon: const Icon(Icons.arrow_back)),
                             ),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 40.0),
+                              child: Text(
+                                'Quran',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.black,
+                                  child: IconButton(
+                                      onPressed: listViewState.hider,
+                                      icon: const Icon(Icons.search_outlined)),
+                                ),
+                                CircleAvatar(
+                                  foregroundColor: Colors.black,
+                                  backgroundColor: Colors.white,
+                                  child: IconButton(
+                                      onPressed: () {},
+                                      icon:
+                                          const Icon(Icons.settings_outlined)),
+                                ),
+                              ],
+                            )
+                          ],
+                        )
+                      : Container(
+                          margin: const EdgeInsets.all(16),
+                          child: TextField(
+                            controller: listViewState.searchController,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.search),
+                                hintText: 'Product Title',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                    borderSide:
+                                        const BorderSide(color: Colors.blue))),
+                            // onChanged: searchProduct,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.white,
-                                foregroundColor: Colors.black,
-                                child: IconButton(
-                                    onPressed: listViewState.hider,
-                                    icon: const Icon(Icons.search_outlined)),
-                              ),
-                              CircleAvatar(
-                                foregroundColor: Colors.black,
-                                backgroundColor: Colors.white,
-                                child: IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(Icons.settings_outlined)),
-                              ),
-                            ],
-                          )
-                        ],
-                      )
-                    : Container(
-                        margin: const EdgeInsets.all(16),
-                        child: TextField(
-                          controller: listViewState.searchController,
-                          decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.search),
-                              hintText: 'Product Title',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide:
-                                      const BorderSide(color: Colors.blue))),
-                          // onChanged: searchProduct,
                         ),
-                      ),
-                ButtonsState(listViewState),
-                listViewState.listBool1 == true
-                    ? ListViewChangable3(
-                        kitablar: kitablar1,
-                      )
-                    : SizedBox.shrink(),
-                listViewState.listBool2 == true
-                    ? ListViewChangable3(kitablar: kitablar2)
-                    : SizedBox.shrink(),
-                listViewState.listBool3 == true
-                    ? ListViewChangable3(kitablar: kitablar3)
-                    : SizedBox.shrink(),
-              ],
+                  ButtonsState(listViewState),
+                  listViewState.listBool1 == true
+                      ? ListViewChangable3(
+                          kitablar: kitablar1,
+                        )
+                      : const SizedBox.shrink(),
+                  listViewState.listBool2 == true
+                      ? ListViewChangable3(kitablar: kitablar2)
+                      : const SizedBox.shrink(),
+                  listViewState.listBool3 == true
+                      ? ListViewChangable3(kitablar: kitablar3)
+                      : const SizedBox.shrink(),
+                ],
+              ),
             ),
           ),
         ),
@@ -123,6 +126,7 @@ class _KitablarUIState extends State<KitablarUI> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Padding ButtonsState(ListViewState listViewState) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -173,6 +177,7 @@ class _KitablarUIState extends State<KitablarUI> {
   }
 }
 
+// ignore: must_be_immutable
 class ListViewChangable3 extends StatelessWidget {
   List<Kitablar> kitablar;
   ListViewChangable3({
@@ -186,8 +191,9 @@ class ListViewChangable3 extends StatelessWidget {
 
     return Expanded(
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         controller: listViewState.controller,
-        padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+        padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
         itemCount: listViewState.filteredMovies.length,
         itemBuilder: (BuildContext context, int index) {
           final books = listViewState.filteredMovies[index];
@@ -203,7 +209,7 @@ class ListViewChangable3 extends StatelessWidget {
                   decoration: BoxDecoration(
                       border: Border.all(
                           width: 1,
-                          color: Color.fromRGBO(158, 158, 158, 0.303)),
+                          color: const Color.fromRGBO(158, 158, 158, 0.303)),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15)),
                   child: Padding(
@@ -218,7 +224,7 @@ class ListViewChangable3 extends StatelessWidget {
                               padding: const EdgeInsets.only(right: 16.0),
                               child: Text(
                                 '${books.queue}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 17),
                               ),
                             ),
@@ -226,8 +232,8 @@ class ListViewChangable3 extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '${books.name}',
-                                  style: TextStyle(
+                                  books.name,
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15),
                                 ),
@@ -235,18 +241,18 @@ class ListViewChangable3 extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Text(
-                                        '${books.description}',
-                                        style: TextStyle(
+                                        books.description,
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12),
                                       ),
-                                      VerticalDivider(
+                                      const VerticalDivider(
                                         color: Colors.black,
                                         thickness: 1,
                                       ),
                                       Text(
-                                        '${books.numberOfSur}',
-                                        style: TextStyle(
+                                        books.numberOfSur,
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12),
                                       )
@@ -258,8 +264,8 @@ class ListViewChangable3 extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          '${books.arabicString}',
-                          style: TextStyle(
+                          books.arabicString,
+                          style: const TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 15),
                         ),
                       ],

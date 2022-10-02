@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: non_constant_identifier_names, duplicate_ignore
+
 import 'package:flutter/material.dart';
 import 'package:project_from_amirali/Cards/products_row_cards.dart';
 
 import 'package:project_from_amirali/useful_classes/hicab_data.dart';
+// ignore: unnecessary_import
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -10,8 +12,9 @@ Color colorWhite = Colors.white;
 Color colorRedcolorBlack = Colors.black;
 Color colorRed = Colors.red;
 
-// ignore: must_be_immutable
+// ignore: must_be_immutable, duplicate_ignore
 class Hicabs extends StatefulWidget {
+  // ignore: non_constant_identifier_names
   List<HicabData> Data;
   final String header;
   Hicabs({
@@ -38,30 +41,32 @@ class _HicabsState extends State<Hicabs> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 390,
         height: 840,
         child: Scaffold(
           body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
-                    child: Text(
-                      'Mehsullar',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              child: SafeArea(
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                      child: Text(
+                        'Mehsullar',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600),
+                      ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                    child: ProductsRow(),
-                  )
-                ],
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                      child: ProductsRow(),
+                    )
+                  ],
+                ),
               ),
             ),
             Expanded(
@@ -78,12 +83,9 @@ class _HicabsState extends State<Hicabs> {
                       child: ValueListenableBuilder<Box<HicabData>>(
                           valueListenable: Boxes.getTransactions().listenable(),
                           builder: (context, Box<HicabData> box, _) {
-                            final transactions = SepetBoxes.getTransactions()
-                                .values
-                                .toList()
-                                .cast<HicabData>();
                             return GridView.count(
-                                padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+                                physics: const BouncingScrollPhysics(),
+                                padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
                                 mainAxisSpacing: 25,
                                 scrollDirection: Axis.vertical,
                                 controller:

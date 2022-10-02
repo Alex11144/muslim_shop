@@ -9,7 +9,6 @@ import 'package:project_from_amirali/screens/Etirler.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/dini_kitablar_ui.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/kitab_class/kitab_class_api.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/listening/listening.dart';
-import 'package:project_from_amirali/screens/dini_kitablar/listening/listening_after_tap/screen_listening.dart';
 import 'package:project_from_amirali/screens/main_screen.dart';
 import 'package:project_from_amirali/screens/search_screen.dart';
 import 'package:project_from_amirali/useful_classes/hicab_data.dart';
@@ -43,8 +42,9 @@ class _CupertinoTabWidgetState extends State<CupertinoTabWidget> {
     return CupertinoTabScaffold(
         controller: controller,
         tabBar: CupertinoTabBar(
+            height: 92,
             backgroundColor: const Color(0xFFE31E24),
-            activeColor: Color.fromARGB(215, 190, 206, 203),
+            activeColor: const Color.fromARGB(215, 190, 206, 203),
             inactiveColor: Colors.white,
             onTap: (index) {
               if (currentIndex == index) {
@@ -89,7 +89,7 @@ class _CupertinoTabWidgetState extends State<CupertinoTabWidget> {
                       ),
                   'hicabs': (context) => HicabsName(),
                   'etirler': (context) => Etir(),
-                  'kitablar': (context) => KitablarUI(),
+                  'kitablar': (context) => const KitablarUI(),
                   '/main_screen': (context) => const Shop(),
                   '/main_screen/movie_details': (context) {
                     final arguments =
@@ -97,13 +97,13 @@ class _CupertinoTabWidgetState extends State<CupertinoTabWidget> {
                     if (arguments is HicabData) {
                       return DetailsScreenForHicabs(product1: arguments);
                     } else {
-                      return Container(child : Text('hello'));
+                      return const Text('hello');
                     }
                   },
                   '/main_screen/listen_to_the_book': (context) {
                     final arguments =
                         ModalRoute.of(context)?.settings.arguments;
-                    if (arguments is Kitablar ) {
+                    if (arguments is Kitablar) {
                       return ListenToTheBook(product1: arguments);
                     } else {
                       return Container();
@@ -116,7 +116,7 @@ class _CupertinoTabWidgetState extends State<CupertinoTabWidget> {
                 navigatorKey: navigatorKeyList[index],
                 routes: {
                   '/': (context) => WillPopScope(
-                        child: SearchWidget(),
+                        child: const SearchWidget(),
                         onWillPop: () => Future<bool>.value(true),
                       ),
                   '/main_screen': (context) => const Shop(),
@@ -139,7 +139,7 @@ class _CupertinoTabWidgetState extends State<CupertinoTabWidget> {
                     } else {
                       return Container();
                     }
-                  },  
+                  },
                 },
               );
             case 2:
@@ -153,7 +153,7 @@ class _CupertinoTabWidgetState extends State<CupertinoTabWidget> {
                   '/main_screen': (context) => const Shop(),
                   'hicabs': (context) => HicabsName(),
                   'etirler': (context) => Etir(),
-                  'kitablar': (context) => KitablarUI(),
+                  'kitablar': (context) => const KitablarUI(),
                   '/main_screen/movie_details': (context) {
                     final arguments =
                         ModalRoute.of(context)?.settings.arguments;

@@ -4,6 +4,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:project_from_amirali/useful_classes/hicab_data.dart';
 
 class SepetWidget extends StatefulWidget {
+  const SepetWidget({super.key});
+
   @override
   State<SepetWidget> createState() => _SepetWidgetState();
 }
@@ -57,6 +59,8 @@ class _SepetWidgetState extends State<SepetWidget> {
                                 behavior: ScrollConfiguration.of(context)
                                     .copyWith(scrollbars: false),
                                 child: ListView.separated(
+                                    physics: const BouncingScrollPhysics(),
+                                    padding: const EdgeInsets.all(0),
                                     shrinkWrap: true,
                                     itemCount: transactions.length,
                                     separatorBuilder: ((context, index) =>
@@ -176,20 +180,16 @@ class _SepetWidgetState extends State<SepetWidget> {
                                                                         fontSize:
                                                                             13)),
                                                                 TextSpan(
-                                                                    text: transactionDouble
-                                                                            .counter
-                                                                            .toString() +
-                                                                        '0'
-                                                                            ' AZN\n',
+                                                                    text:
+                                                                        '${transactionDouble.counter}0 AZN\n',
                                                                     style: const TextStyle(
                                                                         color: Colors
                                                                             .red,
                                                                         fontSize:
                                                                             17)),
                                                                 TextSpan(
-                                                                    text: endirimsiz
-                                                                            .toString() +
-                                                                        '0',
+                                                                    text:
+                                                                        '${endirimsiz}0',
                                                                     style: const TextStyle(
                                                                         color: Color.fromARGB(
                                                                             255,
@@ -272,10 +272,7 @@ class _SepetWidgetState extends State<SepetWidget> {
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
-                                          Text(
-                                              sumCart().toString() +
-                                                  '0' +
-                                                  ' AZN',
+                                          Text('${sumCart()}0 AZN',
                                               style: const TextStyle(
                                                   color: Colors.white))
                                         ],
@@ -286,7 +283,7 @@ class _SepetWidgetState extends State<SepetWidget> {
                                         child: TextButton(
                                             style: TextButton.styleFrom(
                                                 // minimumSize: material,
-                                                primary: Colors.white,
+                                                foregroundColor: Colors.white,
                                                 backgroundColor:
                                                     const Color(0xFFE31E24)),
                                             onPressed: () {},

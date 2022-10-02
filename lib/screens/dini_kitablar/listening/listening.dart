@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:project_from_amirali/screens/dini_kitablar/kitab_class/ayeler_class_api.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/kitab_class/kitab_class_api.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/kitablar_api/ayeler_api.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/listening/listening_after_tap/screen_listening.dart';
@@ -49,7 +48,7 @@ class ListenToTheBook extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               backgroundColor:
-                                  Color.fromARGB(51, 255, 255, 255),
+                                  const Color.fromARGB(51, 255, 255, 255),
                               foregroundColor: Colors.black,
                               child: IconButton(
                                   onPressed: () {
@@ -67,7 +66,7 @@ class ListenToTheBook extends StatelessWidget {
                               padding: const EdgeInsets.only(bottom: 12.0),
                               child: Text(
                                 args.name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500),
@@ -77,15 +76,15 @@ class ListenToTheBook extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(args.description,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 15,
                                         fontWeight: FontWeight.w400)),
-                                VerticalDivider(
+                                const VerticalDivider(
                                   color: Colors.white,
                                 ),
                                 Text(args.numberOfSur,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 15,
                                         fontWeight: FontWeight.w400))
@@ -118,7 +117,7 @@ class ListenToTheBook extends StatelessWidget {
                   ),
                 ),
               ),
-              AyelerListView(),
+              const AyelerListView(),
             ],
           ),
         ),
@@ -148,7 +147,7 @@ class AyelerListView extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             var args = ayeler1[index];
             return Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 bottom: 20,
               ),
               child: Material(
@@ -162,7 +161,7 @@ class AyelerListView extends StatelessWidget {
                         color: Colors.white,
                         border: Border.all(
                             width: 1,
-                            color: Color.fromRGBO(158, 158, 158, 0.303))),
+                            color: const Color.fromRGBO(158, 158, 158, 0.303))),
                     height: 220,
                     width: MediaQuery.of(context).size.width,
                     child: Padding(
@@ -179,24 +178,24 @@ class AyelerListView extends StatelessWidget {
                                 children: [
                                   IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.share_outlined),
+                                    icon: const Icon(Icons.share_outlined),
                                     color: Colors.red,
                                   ),
                                   IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.play_arrow_outlined),
+                                    icon: const Icon(Icons.play_arrow_outlined),
                                     color: Colors.red,
                                   ),
                                   IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.bookmark_outline),
+                                    icon: const Icon(Icons.bookmark_outline),
                                     color: Colors.red,
                                   )
                                 ],
                               )
                             ],
                           ),
-                          Divider(
+                          const Divider(
                             color: Color.fromRGBO(158, 158, 158, 0.303),
                           ),
                           Padding(
@@ -206,17 +205,18 @@ class AyelerListView extends StatelessWidget {
                               children: [
                                 Text(
                                   args.arabicString,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 19),
                                 )
                               ],
                             ),
                           ),
-                          Divider(color: Color.fromRGBO(158, 158, 158, 0.303)),
+                          const Divider(
+                              color: Color.fromRGBO(158, 158, 158, 0.303)),
                           Text(
                             args.description,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 13, fontWeight: FontWeight.w500),
                           )
                         ],

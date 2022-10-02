@@ -6,6 +6,8 @@ import 'package:project_from_amirali/screens/hicabs.dart';
 import 'package:project_from_amirali/useful_classes/hicab_data.dart';
 
 class SearchWidget extends StatefulWidget {
+  const SearchWidget({super.key});
+
   @override
   State<SearchWidget> createState() => _SearchWidgetState();
 }
@@ -16,7 +18,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     Data: List.from(Data1)..addAll(Data2),
     header: 'hello',
   ).Data;
-   List<HicabData> product1 = Hicabs(
+  List<HicabData> product1 = Hicabs(
     Data: List.from(Data1)..addAll(Data2),
     header: 'hello',
   ).Data;
@@ -34,49 +36,58 @@ class _SearchWidgetState extends State<SearchWidget> {
         width: 390,
         height: 840,
         child: Scaffold(
-          body: Column(
-            children: [
-              Container(
-                margin: const EdgeInsets.all(16),
-                child: TextField(
-                  controller: controller,
-                  decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.search),
-                      hintText: 'Product Title',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(color: Colors.blue))),
-                  onChanged: searchProduct,
+          body: SafeArea(
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(16),
+                  child: TextField(
+                    controller: controller,
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.search),
+                        hintText: 'Product Title',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: const BorderSide(color: Colors.blue))),
+                    onChanged: searchProduct,
+                  ),
                 ),
-              ),
-              Expanded(
-                  child: ListView.builder(
-                      itemCount: product.length,
-                      itemBuilder: (context, index) {
-                        HicabData products = HicabData(
-                            ImageAsset: product[index].ImageAsset,
-                            text: product[index].text,
-                            id: product[index].id,
-                            price: product[index].price,
-                            count: product[index].count,
-                            counter: product[index].counter);
-                        return Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                            child: ListTile(
-                                subtitle: Text(
-                                  products.price.toString() + ' AZN',
-                                  style: const TextStyle(fontSize: 13),
-                                ),
-                                leading: Image.asset(
-                                  products.ImageAsset,
-                                  fit: BoxFit.cover,
-                                  width: 50,
-                                  height: 50,
-                                ),
-                                title: Text(products.text),
-                                onTap: () => detailsWidget(context, index)));
-                      }))
-            ],
+                Expanded(
+                    child: ListView.builder(
+                        padding: const EdgeInsets.fromLTRB(
+                          0,
+                          0,
+                          0,
+                          0,
+                        ),
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: product.length,
+                        itemBuilder: (context, index) {
+                          HicabData products = HicabData(
+                              ImageAsset: product[index].ImageAsset,
+                              text: product[index].text,
+                              id: product[index].id,
+                              price: product[index].price,
+                              count: product[index].count,
+                              counter: product[index].counter);
+                          return Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 3),
+                              child: ListTile(
+                                  subtitle: Text(
+                                    '${products.price} AZN',
+                                    style: const TextStyle(fontSize: 13),
+                                  ),
+                                  leading: Image.asset(
+                                    products.ImageAsset,
+                                    fit: BoxFit.cover,
+                                    width: 50,
+                                    height: 50,
+                                  ),
+                                  title: Text(products.text),
+                                  onTap: () => detailsWidget(context, index)));
+                        }))
+              ],
+            ),
           ),
         ),
       ),

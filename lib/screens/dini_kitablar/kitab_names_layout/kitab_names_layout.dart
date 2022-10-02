@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/kitab_class/kitab_class_api.dart';
 import 'package:project_from_amirali/screens/dini_kitablar/kitablar_api/kitablar_api.dart';
-import 'package:provider/provider.dart';
 
 class ListViewState extends ChangeNotifier {
   double selectedIndexes = 0;
@@ -12,10 +11,11 @@ class ListViewState extends ChangeNotifier {
   bool get listBool2a => listBool2;
   bool listBool3 = false;
   bool get listBool3a => listBool3;
+  // ignore: prefer_typing_uninitialized_variables
   late var product1;
   bool _hide = false;
   bool get hide => _hide;
- void condition() {
+  void condition() {
     if (listBool1 == true) {
       filteredMovies = kitablar1;
     } else if (listBool2 == true) {
@@ -86,7 +86,6 @@ class RowLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listViewState = context.watch<ListViewState>();
     return Material(
       borderRadius: BorderRadius.circular(13),
       elevation: selected ? 15 : 5,
@@ -104,7 +103,7 @@ class RowLayout extends StatelessWidget {
           child: Center(
               child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600),
           )),
         ),

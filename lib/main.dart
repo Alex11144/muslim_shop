@@ -62,14 +62,13 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         //   '/hesab_screen': (context) => HesabWidget(),
         // },
         // initialRoute: '/register',
-        home:
-            // CupertinoTabWidget()
-            AnimatedSplashScreen(
-                splash: 'assets/images/betulimage.png',
-                // splashIconSize: 30000,
-                animationDuration: Duration(milliseconds: 1700),
-                duration: 2500,
-                splashTransition: SplashTransition.scaleTransition,
-                nextScreen: CupertinoTabWidget()));
+        home: CupertinoTabWidget());
+    // AnimatedSplashScreen(
+    //     splash: 'assets/images/betulimage.png',
+    //     // splashIconSize: 30000,
+    //     animationDuration: Duration(milliseconds: 1700),
+    //     duration: 2500,
+    //     splashTransition: SplashTransition.scaleTransition,
+    //     nextScreen: CupertinoTabWidget()));
   }
 }

@@ -1,5 +1,9 @@
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore, camel_case_types
+
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class sections extends StatefulWidget {
   final String text1;
   final String text2;

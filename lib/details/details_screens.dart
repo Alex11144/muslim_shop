@@ -1,7 +1,8 @@
+// ignore_for_file: unnecessary_import
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 
 import 'package:project_from_amirali/screens/hicabs.dart';
 import 'package:project_from_amirali/useful_classes/hicab_data.dart';
@@ -10,7 +11,8 @@ import 'package:project_from_amirali/useful_classes/hicab_data.dart';
 
 class DetailsScreenForHicabs extends StatefulWidget {
   final HicabData product1;
-  DetailsScreenForHicabs({Key? key, required this.product1}) : super(key: key);
+  const DetailsScreenForHicabs({Key? key, required this.product1})
+      : super(key: key);
 
   @override
   State<DetailsScreenForHicabs> createState() => _DetailsScreenForHicabsState();
@@ -161,12 +163,11 @@ class _DetailsScreenForHicabsState extends State<DetailsScreenForHicabs> {
                                       color: Colors.black,
                                       fontSize: 13)),
                               TextSpan(
-                                  text: products.counter.toString() +
-                                      '0' ' AZN\n',
+                                  text: '${products.counter}0 AZN\n',
                                   style: const TextStyle(
                                       color: Colors.red, fontSize: 25)),
                               TextSpan(
-                                  text: endirimsiz.toString() + '0',
+                                  text: '${endirimsiz}0',
                                   style: const TextStyle(
                                       color: Colors.grey,
                                       decoration: TextDecoration.lineThrough,

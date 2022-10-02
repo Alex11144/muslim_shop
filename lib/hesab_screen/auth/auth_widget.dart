@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, avoid_print
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -24,7 +26,7 @@ class _AuthWidgetState extends State<AuthWidget> {
             color: Colors.white,
             height: 840,
             width: 390,
-            child: SingleChildScrollView(
+            child: const SingleChildScrollView(
               child: HeaderWidget(),
             )),
       ),
@@ -33,7 +35,7 @@ class _AuthWidgetState extends State<AuthWidget> {
 }
 
 class HeaderWidget extends StatelessWidget {
-  HeaderWidget({Key? key}) : super(key: key);
+  const HeaderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +114,7 @@ class _FormWidgetState extends State<FormWidget> {
   // late final GlobalKey<NavigatorState> navigatorKey;
   final loginTextController = TextEditingController(text: 'admin');
   final passswordTextController = TextEditingController(text: 'admin');
+  // ignore: avoid_init_to_null
   String? errorText = null;
   // @override
   // void initState() {
@@ -224,8 +227,8 @@ class _FormWidgetState extends State<FormWidget> {
         Row(children: [
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFFE31E24),
-                  onPrimary: Colors.white,
+                  foregroundColor: Colors.white,
+                  backgroundColor: const Color(0xFFE31E24),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(7))),
               onPressed: auth,

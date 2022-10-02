@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_is_not_empty
+
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_from_amirali/hesab_screen/auth/registration/theme_helper.dart';

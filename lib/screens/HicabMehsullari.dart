@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:project_from_amirali/screens/hicabs.dart';
 import 'package:project_from_amirali/useful_classes/hicab_data.dart';
 
+// ignore: must_be_immutable
 class HicabsName extends StatelessWidget {
   String header = 'Hicablar';
 
@@ -21,6 +23,7 @@ class HicabsName extends StatelessWidget {
   }
 }
 
+// ignore: non_constant_identifier_names
 List<HicabData> Data1 = [
   HicabData(
       ImageAsset: 'assets/images/ApiHicab1.jpg',
